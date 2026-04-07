@@ -3,157 +3,217 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>余拾期 / Persona Lab</title>
+<title>Persona Lab</title>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+    font-family:-apple-system,BlinkMacSystemFont,sans-serif;
+    background:#0a0a0a;
+    color:#eaeaea;
+    overflow-x:hidden;
 }
 
-body {
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-    background: #0a0a0a;
-    color: #eaeaea;
-    line-height: 1.6;
+/ 背景 /
+#bg{
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:-1;
 }
 
-.container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 60px 20px;
+/ 容器 /
+.container{
+    max-width:900px;
+    margin:0 auto;
+    padding:80px 20px;
 }
 
-h1 {
-    font-size: 42px;
-    font-weight: 600;
-    letter-spacing: 1px;
+/ 标题 /
+h1{
+    font-size:40px;
+    font-weight:600;
 }
 
-.subtitle {
-    margin-top: 10px;
-    color: #888;
-    font-size: 16px;
+.subtitle{
+    margin-top:10px;
+    color:#888;
+    transition:opacity .5s;
 }
 
-.section {
-    margin-top: 80px;
+/ 区块 /
+.section{
+    margin-top:70px;
 }
 
-.section h2 {
-    font-size: 20px;
-    margin-bottom: 20px;
-    color: #aaa;
+.section h2{
+    font-size:16px;
+    color:#aaa;
+    margin-bottom:15px;
 }
 
-.card {
-    border: 1px solid #222;
-    padding: 20px;
-    margin-bottom: 20px;
-    transition: all 0.3s ease;
+/ 卡片 /
+.card{
+    border:1px solid #222;
+    padding:18px;
+    margin-bottom:15px;
+    transition:all .3s ease;
+    cursor:pointer;
 }
 
-.card:hover {
-    border-color: #555;
-    transform: translateY(-3px);
+.card:hover{
+    border-color:#555;
 }
 
-.persona-name {
-    font-size: 18px;
-    margin-bottom: 10px;
+/ 展开 /
+.extra{
+    margin-top:12px;
+    color:#aaa;
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .4s ease;
 }
 
-.typing {
-    color: #aaa;
-    font-size: 14px;
-    border-right: 2px solid #aaa;
-    white-space: nowrap;
-    overflow: hidden;
-    width: 0;
-    animation: typing 3s steps(40, end) forwards, blink 0.8s infinite;
+.card.open .extra{
+    max-height:200px;
 }
 
-@keyframes typing {
-    to { width: 100%; }
-}
-
-@keyframes blink {
-    50% { border-color: transparent; }
-}
-
-.footer {
-    margin-top: 100px;
-    font-size: 12px;
-    color: #555;
+/ footer /
+.footer{
+    margin-top:80px;
+    color:#555;
+    font-size:12px;
 }
 </style>
 </head>
 
 <body>
 
+<canvas id="bg"></canvas>
+
 <div class="container">
 
-    <h1>余拾期 / Persona Lab</h1>
-    <div class="subtitle">我在构建可以长期存在的AI人格系统</div>
+<h1>余拾期 / Persona Lab</h1>
+<div class="subtitle" id="subtitle">
+我在构建可以长期存在的AI人格系统
+</div>
 
-    <div class="section">
-        <h2>01 — Personas</h2>
+<div class="section">
+<h2>01 — Personas</h2>
 
-        <div class="card">
-            <div class="persona-name">许瑾</div>
-            <div class="typing">天马行空，但会绕回来。在你难过的时候，她不会讲道理。</div>
-        </div>
+<div class="card">
+<div>许瑾</div>
+<div class="extra">
+她不会安慰你，但会让你意识到你在逃避什么。
+</div>
+</div>
 
-        <div class="card">
-            <div class="persona-name">（待构建）</div>
-            <div class="typing">一个更稳定的、不会情绪漂移的人格结构。</div>
-        </div>
-    </div>
-
-    <div class="section">
-        <h2>02 — Prompt Architecture</h2>
-
-        <div class="card">
-            <div>
-                限制表达方式 → 降低模板感  
-                控制节奏 → 增强真实感  
-                加入行为逻辑 → 提升人格一致性
-            </div>
-        </div>
-
-    </div>
-
-    <div class="section">
-        <h2>03 — Conversations</h2>
-
-        <div class="card">
-            <div>
-                “你刚刚那句话，不是回答，是在躲。”  
-                <br><br>
-                —— 来自许瑾
-            </div>
-        </div>
-
-    </div>
-
-    <div class="section">
-        <h2>04 — Notes</h2>
-
-        <div class="card">
-            <div>
-                大多数人做的是“能对话的AI”，  
-                但更难的是“不会崩的人格”。
-            </div>
-        </div>
-
-    </div>
-
-    <div class="footer">
-        © Persona Lab / Generated with intent
-    </div>
+<div class="card">
+<div>未命名人格</div>
+<div class="extra">
+目标：稳定、不情绪漂移、具备长期一致性。
+</div>
+</div>
 
 </div>
+
+<div class="section">
+<h2>02 — Architecture</h2>
+
+<div class="card">
+<div>Prompt System</div>
+<div class="extra">
+限制表达 → 控制节奏 → 行为逻辑 → 记忆约束
+</div>
+</div>
+
+</div>
+
+<div class="section">
+<h2>03 — Notes</h2>
+
+<div class="card">
+<div>Observation</div>
+<div class="extra">
+难点不是“会说”，而是“始终是同一个人”。
+</div>
+</div>
+
+</div>
+
+<div class="footer">
+system quietly running...
+</div>
+
+</div>
+
+<script>
+/ ===== 卡片点击 ===== /
+document.querySelectorAll('.card').forEach(c=>{
+    c.addEventListener('click',()=>{
+        c.classList.toggle('open');
+    });
+});
+
+/ ===== 标题轮换 ===== /
+const texts=[
+"我在构建可以长期存在的AI人格系统",
+"一致性，比聪明更重要",
+"限制，是人格的边界",
+"不是对话，而是结构"
+];
+
+let i=0;
+setInterval(()=>{
+    i=(i+1)%texts.length;
+    let el=document.getElementById('subtitle');
+    el.style.opacity=0;
+    setTimeout(()=>{
+        el.innerText=texts[i];
+        el.style.opacity=1;
+    },200);
+},4000);
+
+/ ===== 粒子背景（稳定版） ===== */
+const canvas=document.getElementById('bg');
+const ctx=canvas.getContext('2d');
+
+function resize(){
+    canvas.width=window.innerWidth;
+    canvas.height=window.innerHeight;
+}
+resize();
+window.addEventListener('resize',resize);
+
+let dots=[];
+for(let i=0;i<35;i++){
+    dots.push({
+        x:Math.random()*canvas.width,
+        y:Math.random()*canvas.height,
+        vx:(Math.random()-0.5)0.15,
+        vy:(Math.random()-0.5)0.15
+    });
+}
+
+function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    for(let d of dots){
+        d.x+=d.vx;
+        d.y+=d.vy;
+
+        if(d.x<0||d.x>canvas.width) d.vx=-1;
+        if(d.y<0||d.y>canvas.height) d.vy=-1;
+
+        ctx.fillStyle="rgba(255,255,255,0.25)";
+        ctx.fillRect(d.x,d.y,1.2,1.2);
+    }
+
+    requestAnimationFrame(draw);
+}
+draw();
+</script>
 
 </body>
 </html>
