@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>余拾期 / Persona Lab</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #0a0a0a;
+    color: #eaeaea;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+
+h1 {
+    font-size: 42px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.subtitle {
+    margin-top: 10px;
+    color: #888;
+    font-size: 16px;
+}
+
+.section {
+    margin-top: 80px;
+}
+
+.section h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #aaa;
+}
+
+.card {
+    border: 1px solid #222;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    border-color: #555;
+    transform: translateY(-3px);
+}
+
+.persona-name {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.typing {
+    color: #aaa;
+    font-size: 14px;
+    border-right: 2px solid #aaa;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+    animation: typing 3s steps(40, end) forwards, blink 0.8s infinite;
+}
+
+@keyframes typing {
+    to { width: 100%; }
+}
+
+@keyframes blink {
+    50% { border-color: transparent; }
+}
+
+.footer {
+    margin-top: 100px;
+    font-size: 12px;
+    color: #555;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>余拾期 / Persona Lab</h1>
+    <div class="subtitle">我在构建可以长期存在的AI人格系统</div>
+
+    <div class="section">
+        <h2>01 — Personas</h2>
+
+        <div class="card">
+            <div class="persona-name">许瑾</div>
+            <div class="typing">天马行空，但会绕回来。在你难过的时候，她不会讲道理。</div>
+        </div>
+
+        <div class="card">
+            <div class="persona-name">（待构建）</div>
+            <div class="typing">一个更稳定的、不会情绪漂移的人格结构。</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>02 — Prompt Architecture</h2>
+
+        <div class="card">
+            <div>
+                限制表达方式 → 降低模板感  
+                控制节奏 → 增强真实感  
+                加入行为逻辑 → 提升人格一致性
+            </div>
+        </div>
+
+    </div>
+
+    <div class="section">
+        <h2>03 — Conversations</h2>
+
+        <div class="card">
+            <div>
+                “你刚刚那句话，不是回答，是在躲。”  
+                <br><br>
+                —— 来自许瑾
+            </div>
+        </div>
+
+    </div>
+
+    <div class="section">
+        <h2>04 — Notes</h2>
+
+        <div class="card">
+            <div>
+                大多数人做的是“能对话的AI”，  
+                但更难的是“不会崩的人格”。
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        © Persona Lab / Generated with intent
+    </div>
+
+</div>
+
+</body>
+</html>
