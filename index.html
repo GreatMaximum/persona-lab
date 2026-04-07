@@ -12,15 +12,6 @@ body{
     font-family:-apple-system,BlinkMacSystemFont,sans-serif;
     background:#0a0a0a;
     color:#eaeaea;
-    overflow-x:hidden;
-}
-
-/ 背景 /
-#bg{
-    position:fixed;
-    top:0;
-    left:0;
-    z-index:-1;
 }
 
 / 容器 /
@@ -39,7 +30,7 @@ h1{
 .subtitle{
     margin-top:10px;
     color:#888;
-    transition:opacity .5s;
+    transition:opacity .4s;
 }
 
 / 区块 /
@@ -58,25 +49,27 @@ h1{
     border:1px solid #222;
     padding:18px;
     margin-bottom:15px;
-    transition:all .3s ease;
+    transition:all .25s ease;
     cursor:pointer;
 }
 
-.card:hover{
-    border-color:#555;
+.card:active{
+    transform:scale(0.98);
 }
 
-/ 展开 /
+.card.open{
+    border-color:#666;
+}
+
+/ 展开内容 /
 .extra{
     margin-top:12px;
     color:#aaa;
-    max-height:0;
-    overflow:hidden;
-    transition:max-height .4s ease;
+    display:none;
 }
 
 .card.open .extra{
-    max-height:200px;
+    display:block;
 }
 
 / footer /
@@ -89,8 +82,6 @@ h1{
 </head>
 
 <body>
-
-<canvas id="bg"></canvas>
 
 <div class="container">
 
@@ -149,70 +140,31 @@ system quietly running...
 </div>
 
 <script>
-/ ===== 卡片点击 ===== /
-document.querySelectorAll('.card').forEach(c=>{
-    c.addEventListener('click',()=>{
-        c.classList.toggle('open');
+/ 卡片展开（确保执行） /
+document.querySelectorAll('.card').forEach(function(card){
+    card.addEventListener('click', function(){
+        card.classList.toggle('open');
     });
 });
 
-/ ===== 标题轮换 ===== /
-const texts=[
+/ 标题轮换（稳定写法） */
+var texts=[
 "我在构建可以长期存在的AI人格系统",
 "一致性，比聪明更重要",
 "限制，是人格的边界",
 "不是对话，而是结构"
 ];
 
-let i=0;
-setInterval(()=>{
+var i=0;
+setInterval(function(){
     i=(i+1)%texts.length;
-    let el=document.getElementById('subtitle');
+    var el=document.getElementById('subtitle');
     el.style.opacity=0;
-    setTimeout(()=>{
+    setTimeout(function(){
         el.innerText=texts[i];
         el.style.opacity=1;
     },200);
 },4000);
-
-/ ===== 粒子背景（稳定版） ===== */
-const canvas=document.getElementById('bg');
-const ctx=canvas.getContext('2d');
-
-function resize(){
-    canvas.width=window.innerWidth;
-    canvas.height=window.innerHeight;
-}
-resize();
-window.addEventListener('resize',resize);
-
-let dots=[];
-for(let i=0;i<35;i++){
-    dots.push({
-        x:Math.random()*canvas.width,
-        y:Math.random()*canvas.height,
-        vx:(Math.random()-0.5)0.15,
-        vy:(Math.random()-0.5)0.15
-    });
-}
-
-function draw(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-
-    for(let d of dots){
-        d.x+=d.vx;
-        d.y+=d.vy;
-
-        if(d.x<0||d.x>canvas.width) d.vx=-1;
-        if(d.y<0||d.y>canvas.height) d.vy=-1;
-
-        ctx.fillStyle="rgba(255,255,255,0.25)";
-        ctx.fillRect(d.x,d.y,1.2,1.2);
-    }
-
-    requestAnimationFrame(draw);
-}
-draw();
 </script>
 
 </body>
