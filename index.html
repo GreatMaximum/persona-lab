@@ -12,76 +12,81 @@ body{
     font-family:-apple-system,BlinkMacSystemFont,sans-serif;
     background:#0a0a0a;
     color:#eaeaea;
+    line-height:1.6;
 }
 
 / 容器 /
 .container{
     max-width:900px;
     margin:0 auto;
-    padding:80px 20px;
+    padding:70px 20px;
 }
 
 / 标题 /
 h1{
-    font-size:40px;
+    font-size:42px;
     font-weight:600;
 }
 
 .subtitle{
     margin-top:10px;
     color:#888;
+    opacity:0.8;
 }
 
 / 区块 /
 .section{
-    margin-top:70px;
+    margin-top:80px;
 }
 
 .section h2{
-    font-size:16px;
+    font-size:18px;
     color:#aaa;
-    margin-bottom:15px;
+    margin-bottom:20px;
 }
 
-/ 卡片（用details实现展开） /
-details{
+/ 卡片 /
+.card{
     border:1px solid #222;
-    padding:18px;
-    margin-bottom:15px;
+    padding:20px;
+    margin-bottom:20px;
     transition:all .25s ease;
 }
 
-details[open]{
-    border-color:#666;
-}
-
-summary{
-    cursor:pointer;
-    list-style:none;
-    font-size:16px;
-}
-
-/ 去掉默认箭头 /
-summary::-webkit-details-marker{
-    display:none;
-}
-
-.extra{
-    margin-top:12px;
-    color:#aaa;
-    line-height:1.6;
-}
-
-/ 微交互 /
-details:active{
+/ 微交互（保留克制） /
+.card:active{
     transform:scale(0.98);
+}
+
+.card:hover{
+    border-color:#444;
+}
+
+/ 文本细节 /
+.persona{
+    font-size:17px;
+    margin-bottom:8px;
+}
+
+.desc{
+    color:#aaa;
+}
+
+/ subtle 呼吸动画 /
+.fade{
+    animation:fade 6s infinite alternate;
+}
+
+@keyframes fade{
+    from{opacity:0.6;}
+    to{opacity:1;}
 }
 
 / footer */
 .footer{
-    margin-top:80px;
-    color:#555;
+    margin-top:100px;
     font-size:12px;
+    color:#555;
 }
 </style>
 </head>
@@ -91,60 +96,59 @@ details:active{
 <div class="container">
 
 <h1>余拾期 / Persona Lab</h1>
-<div class="subtitle">
+<div class="subtitle fade">
 我在构建可以长期存在的AI人格系统
 </div>
 
 <div class="section">
 <h2>01 — Personas</h2>
 
-<details>
-<summary>许瑾</summary>
-<div class="extra">
-她不会安慰你，但会让你意识到你在逃避什么。  
-她不是来解决问题，而是让问题无法被忽视。
+<div class="card">
+<div class="persona">许瑾</div>
+<div class="desc">
+天马行空，但会绕回来。  
+在你难过的时候，她不会讲道理。
 </div>
-</details>
+</div>
 
-<details>
-<summary>未命名人格</summary>
-<div class="extra">
-目标：稳定、不情绪漂移、具备长期一致性。  
-不是更聪明，而是更“像一个人”。
+<div class="card">
+<div class="persona">未命名人格</div>
+<div class="desc">
+目标是稳定、不情绪漂移、具备长期一致性。
 </div>
-</details>
+</div>
 
 </div>
 
 <div class="section">
-<h2>02 — Architecture</h2>
+<h2>02 — Prompt Architecture</h2>
 
-<details>
-<summary>Prompt System</summary>
-<div class="extra">
-限制表达 → 控制节奏 → 行为逻辑 → 记忆约束  
-<br><br>
-通过约束而不是自由，来形成稳定人格。
+<div class="card">
+<div class="desc">
+限制表达 → 降低模板感  
+<br>
+控制节奏 → 增强真实感  
+<br>
+行为逻辑 → 维持人格一致
 </div>
-</details>
+</div>
 
 </div>
 
 <div class="section">
 <h2>03 — Notes</h2>
 
-<details>
-<summary>Observation</summary>
-<div class="extra">
-大多数AI的问题不是不会说，而是每次都在变。  
-一致性，才是人格成立的前提。
+<div class="card">
+<div class="desc">
+大多数人做的是“会说话的AI”，  
+但更难的是“不会崩的人格”。
 </div>
-</details>
+</div>
 
 </div>
 
 <div class="footer">
-system quietly running...
+quiet system / stable persona
 </div>
 
 </div>
