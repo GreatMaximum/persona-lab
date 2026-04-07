@@ -30,7 +30,6 @@ h1{
 .subtitle{
     margin-top:10px;
     color:#888;
-    transition:opacity .4s;
 }
 
 / 区块 /
@@ -44,35 +43,41 @@ h1{
     margin-bottom:15px;
 }
 
-/ 卡片 /
-.card{
+/ 卡片（用details实现展开） /
+details{
     border:1px solid #222;
     padding:18px;
     margin-bottom:15px;
     transition:all .25s ease;
-    cursor:pointer;
 }
 
-.card:active{
-    transform:scale(0.98);
-}
-
-.card.open{
+details[open]{
     border-color:#666;
 }
 
-/ 展开内容 /
-.extra{
-    margin-top:12px;
-    color:#aaa;
+summary{
+    cursor:pointer;
+    list-style:none;
+    font-size:16px;
+}
+
+/ 去掉默认箭头 /
+summary::-webkit-details-marker{
     display:none;
 }
 
-.card.open .extra{
-    display:block;
+.extra{
+    margin-top:12px;
+    color:#aaa;
+    line-height:1.6;
 }
 
-/ footer /
+/ 微交互 /
+details:active{
+    transform:scale(0.98);
+}
+
+/ footer */
 .footer{
     margin-top:80px;
     color:#555;
@@ -86,50 +91,55 @@ h1{
 <div class="container">
 
 <h1>余拾期 / Persona Lab</h1>
-<div class="subtitle" id="subtitle">
+<div class="subtitle">
 我在构建可以长期存在的AI人格系统
 </div>
 
 <div class="section">
 <h2>01 — Personas</h2>
 
-<div class="card">
-<div>许瑾</div>
+<details>
+<summary>许瑾</summary>
 <div class="extra">
-她不会安慰你，但会让你意识到你在逃避什么。
+她不会安慰你，但会让你意识到你在逃避什么。  
+她不是来解决问题，而是让问题无法被忽视。
 </div>
-</div>
+</details>
 
-<div class="card">
-<div>未命名人格</div>
+<details>
+<summary>未命名人格</summary>
 <div class="extra">
-目标：稳定、不情绪漂移、具备长期一致性。
+目标：稳定、不情绪漂移、具备长期一致性。  
+不是更聪明，而是更“像一个人”。
 </div>
-</div>
+</details>
 
 </div>
 
 <div class="section">
 <h2>02 — Architecture</h2>
 
-<div class="card">
-<div>Prompt System</div>
+<details>
+<summary>Prompt System</summary>
 <div class="extra">
-限制表达 → 控制节奏 → 行为逻辑 → 记忆约束
+限制表达 → 控制节奏 → 行为逻辑 → 记忆约束  
+<br><br>
+通过约束而不是自由，来形成稳定人格。
 </div>
-</div>
+</details>
 
 </div>
 
 <div class="section">
 <h2>03 — Notes</h2>
 
-<div class="card">
-<div>Observation</div>
+<details>
+<summary>Observation</summary>
 <div class="extra">
-难点不是“会说”，而是“始终是同一个人”。
+大多数AI的问题不是不会说，而是每次都在变。  
+一致性，才是人格成立的前提。
 </div>
-</div>
+</details>
 
 </div>
 
@@ -138,34 +148,6 @@ system quietly running...
 </div>
 
 </div>
-
-<script>
-/ 卡片展开（确保执行） /
-document.querySelectorAll('.card').forEach(function(card){
-    card.addEventListener('click', function(){
-        card.classList.toggle('open');
-    });
-});
-
-/ 标题轮换（稳定写法） */
-var texts=[
-"我在构建可以长期存在的AI人格系统",
-"一致性，比聪明更重要",
-"限制，是人格的边界",
-"不是对话，而是结构"
-];
-
-var i=0;
-setInterval(function(){
-    i=(i+1)%texts.length;
-    var el=document.getElementById('subtitle');
-    el.style.opacity=0;
-    setTimeout(function(){
-        el.innerText=texts[i];
-        el.style.opacity=1;
-    },200);
-},4000);
-</script>
 
 </body>
 </html>
