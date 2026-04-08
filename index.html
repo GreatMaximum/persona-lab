@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Persona Lab</title>
+<title>余拾期 / Persona Lab</title>
 
 <style>
 * {
@@ -16,68 +16,70 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     background: #0a0a0a;
     color: #eaeaea;
-    line-height: 1.7;
+    line-height: 1.6;
 }
 
-/* 容器 /
 .container {
-    max-width: 820px;
+    max-width: 900px;
     margin: 0 auto;
-    padding: 80px 24px;
+    padding: 60px 20px;
 }
 
-/ 标题 /
 h1 {
-    font-size: 40px;
+    font-size: 42px;
     font-weight: 600;
-    letter-spacing: 0.5px;
-}
-
-.subtitle {
-    margin-top: 12px;
-    color: #8a8a8a;
-    font-size: 15px;
-}
-
-/ 区块 /
-.section {
-    margin-top: 90px;
-}
-
-.section h2 {
-    font-size: 16px;
-    color: #9a9a9a;
-    margin-bottom: 18px;
     letter-spacing: 1px;
 }
 
-/ 卡片（核心还原） /
+.subtitle {
+    margin-top: 10px;
+    color: #888;
+    font-size: 16px;
+}
+
+.section {
+    margin-top: 80px;
+}
+
+.section h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #aaa;
+}
+
 .card {
-    border: 1px solid #1f1f1f;
-    padding: 22px;
-    margin-bottom: 18px;
-    transition: border-color 0.25s ease;
+    border: 1px solid #222;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
 }
 
-/ 只做非常轻的反馈 /
-.card:active {
-    border-color: #444;
+.card:hover {
+    border-color: #555;
+    transform: translateY(-3px);
 }
 
-/ 文本 /
-.title {
-    font-size: 17px;
-    margin-bottom: 6px;
+.persona-name {
+    font-size: 18px;
+    margin-bottom: 10px;
 }
 
-.text {
-    color: #a0a0a0;
-    font-size: 15px;
+/* typing效果（用于光标） */
+.typing {
+    color: #aaa;
+    font-size: 14px;
+    border-right: 2px solid #aaa;
+    padding-right: 4px;
+    display: inline;
+    animation: blink 0.8s infinite;
 }
 
-/ footer */
+@keyframes blink {
+    50% { border-color: transparent; }
+}
+
 .footer {
-    margin-top: 110px;
+    margin-top: 100px;
     font-size: 12px;
     color: #555;
 }
@@ -89,57 +91,89 @@ h1 {
 <div class="container">
 
     <h1>余拾期 / Persona Lab</h1>
-    <div class="subtitle">
-        我在构建可以长期存在的AI人格系统
-    </div>
+    <div class="subtitle">我在构建可以长期存在的AI人格系统</div>
 
     <div class="section">
-        <h2>01 — PERSONAS</h2>
+        <h2>01 — Personas</h2>
 
         <div class="card">
-            <div class="title">许瑾</div>
-            <div class="text">
-                天马行空，但会绕回来。<br>
-                在你难过的时候，她不会讲道理。
-            </div>
+            <div class="persona-name">许瑾</div>
+            <div class="typing" data-text="天马行空，但会绕回来。在你难过的时候，她不会讲道理。"></div>
         </div>
 
         <div class="card">
-            <div class="title">未命名人格</div>
-            <div class="text">
-                目标是稳定、不情绪漂移、具备长期一致性。
-            </div>
+            <div class="persona-name">（待构建）</div>
+            <div class="typing" data-text="一个更稳定的、不会情绪漂移的人格结构。"></div>
         </div>
     </div>
 
     <div class="section">
-        <h2>02 — PROMPT ARCHITECTURE</h2>
+        <h2>02 — Prompt Architecture</h2>
 
         <div class="card">
-            <div class="text">
-                限制表达 → 降低模板感<br>
+            <div>
+                限制表达方式 → 降低模板感<br>
                 控制节奏 → 增强真实感<br>
-                行为逻辑 → 维持人格一致
+                加入行为逻辑 → 提升人格一致性
             </div>
         </div>
     </div>
 
     <div class="section">
-        <h2>03 — NOTES</h2>
+        <h2>03 — Conversations</h2>
 
         <div class="card">
-            <div class="text">
-                大多数人做的是“会说话的AI”，<br>
+            <div>
+                “你刚刚那句话，不是回答，是在躲。”  
+                <br><br>
+                —— 来自许瑾
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>04 — Notes</h2>
+
+        <div class="card">
+            <div>
+                大多数人做的是“能对话的AI”，  
                 但更难的是“不会崩的人格”。
             </div>
         </div>
     </div>
 
     <div class="footer">
-        persona lab / quiet system
+        © Persona Lab / Generated with intent
     </div>
 
 </div>
+
+<script>
+window.onload = function(){
+
+    var elements = document.querySelectorAll(".typing");
+
+    elements.forEach(function(el, index){
+
+        var text = el.getAttribute("data-text");
+        var i = 0;
+
+        function type(){
+            if(i < text.length){
+                el.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(type, 25);
+            } else {
+                el.style.borderRight = "none"; // 打完去掉光标
+            }
+        }
+
+        // 让卡片依次出现（更自然）
+        setTimeout(type, index * 500);
+    });
+
+}
+</script>
 
 </body>
 </html>
